@@ -29,16 +29,17 @@ class Cart_page(Base):
     #Actions
     def click_button_checkout(self):
         self.get_button_checkout().click()
-    def return_float_price_of_product_1(self):
-        return float(self.get_price_of_product_1().text.replace("$", ""))
-    def return_float_price_of_product_2(self):
-        return float(self.get_price_of_product_2().text.replace("$", ""))
+    def return_float_price(self, element):
+        str_value = element.text.split("$")[1]
+        return float(str_value)
 
     #Methods
     def get_sum_product(self):
         with allure.step("Get sum product"):
             Logger.add_start_step(method="Get sum product")
-            product_price_sum = self.return_float_price_of_product_1() + self.return_float_price_of_product_2()
+            float_price_of_product_1 = self.return_float_price(self.get_price_of_product_1())
+            float_price_of_product_2 = self.return_float_price(self.get_price_of_product_2())
+            product_price_sum = float_price_of_product_1 + float_price_of_product_2
             Logger.add_end_step(url=self.get_current_url(), method="Get sum product")
         return product_price_sum
 

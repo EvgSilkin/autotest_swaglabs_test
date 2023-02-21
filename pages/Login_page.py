@@ -45,10 +45,8 @@ class Login_page(Base):
     def authorization(self, username, password):
         with allure.step("Authorization"):
             Logger.add_start_step(method="Authorization")
-            print("\nStart authorization...")
             self.driver.get(self.url)
             self.driver.maximize_window()
-            print("Current url: " + self.get_current_url())
             self.fill_input_username(username)
             self.fill_input_password(password)
             self.click_login_button()

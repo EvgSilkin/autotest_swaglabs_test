@@ -39,16 +39,17 @@ class Catalog_page(Base):
         self.get_button_add_to_cart_product_2().click()
     def click_link_to_cart(self):
         self.get_link_to_cart().click()
-    def return_float_price_of_product_1(self):
-        return float(self.get_price_of_product_1().text.replace("$", ""))
-    def return_float_price_of_product_2(self):
-        return float(self.get_price_of_product_2().text.replace("$", ""))
+    def return_float_price(self, element):
+        str_value = element.text.split("$")[1]
+        return float(str_value)
 
     #Methods
     def add_to_cart_two_products_and_return_sum_price(self):
         with allure.step("Add to cart two products and return sum price"):
             Logger.add_start_step(method="Add to cart two products and return sum price")
-            product_price_sum = self.return_float_price_of_product_1() + self.return_float_price_of_product_2()
+            float_price_of_product_1 = self.return_float_price(self.get_price_of_product_1())
+            float_price_of_product_2 = self.return_float_price(self.get_price_of_product_2())
+            product_price_sum = float_price_of_product_1 + float_price_of_product_2
             self.click_button_add_to_cart_product_1()
             self.click_button_add_to_cart_product_2()
             self.click_link_to_cart()
