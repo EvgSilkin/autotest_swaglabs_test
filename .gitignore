@@ -3,3 +3,13 @@
 __pycache__/
 
 .pytest_cache/
+
+**/*.log
+
+logs/*.log
+
+**/*.png
+
+screen/*.png
+
+test_results/
