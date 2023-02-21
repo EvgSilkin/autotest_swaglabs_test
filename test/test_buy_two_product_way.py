@@ -13,9 +13,8 @@ from utilities.Logger import Logger
 
 
 @allure.description("test_buy_two_product_way")
-def test_buy_two_product_way(set_up):
+def test_buy_two_product_way(driver):
     Logger.add_start_step(method="Проверка всего пути покупки двух товаров")
-    driver = webdriver.Chrome(ChromeDriverManager().install())
     path_to_screenshot = "screen\\"
     username = "standard_user"
     password = "secret_sauce"
@@ -48,6 +47,6 @@ def test_buy_two_product_way(set_up):
     finish_page.assert_product_sum_with_tax()
     finish_page.complete_test_way()
     finish_page.screen_page(path_to_screenshot)
-    driver.close()
+
     Logger.add_end_step(url=finish_page.get_current_url(),
                         method="Проверка всего пути покупки двух товаров")
