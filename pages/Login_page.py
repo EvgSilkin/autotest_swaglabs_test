@@ -12,10 +12,10 @@ class Login_page(Base):
     url = "https://www.saucedemo.com/"
 
     #Locators
-    input_username = "//input[@id='user-name']";
-    input_password = "//input[@id='password']";
-    login_button = "//input[@id='login-button']";
-    authorization_marker = "//span[@class='title']";
+    input_username = "//input[@id='user-name']"
+    input_password = "//input[@id='password']"
+    login_button = "//input[@id='login-button']"
+    authorization_marker = "//span[@class='title']"
 
     #Getters
     def get_input_username(self):
@@ -33,13 +33,13 @@ class Login_page(Base):
 
     #Actions
     def fill_input_username(self, username):
-        self.get_input_username().send_keys(username);
+        self.get_input_username().send_keys(username)
 
     def fill_input_password(self, password):
-        self.get_input_password().send_keys(password);
+        self.get_input_password().send_keys(password)
 
     def click_login_button(self):
-        self.get_login_button().click();
+        self.get_login_button().click()
 
     #Methods
     def authorization(self, username, password):
@@ -57,4 +57,3 @@ class Login_page(Base):
                   "\n\tLogin: " + username +
                   "\n\tPassword: " + password)
             Logger.add_end_step(url=self.get_current_url(), method="Authorization")
-

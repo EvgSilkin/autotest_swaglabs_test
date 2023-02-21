@@ -15,6 +15,7 @@ class Catalog_page(Base):
     price_of_product_1 = "//button[@id='add-to-cart-sauce-labs-backpack']/preceding-sibling::div[@class='inventory_item_price']"
     price_of_product_2 = "//button[@id='add-to-cart-sauce-labs-bike-light']/preceding-sibling::div[@class='inventory_item_price']"
     link_to_cart = "//a[@class='shopping_cart_link']"
+    cart_marker = "//span[@class='title']"
 
     #Getters
     def get_button_add_to_cart_product_1(self):
@@ -27,6 +28,9 @@ class Catalog_page(Base):
         return self.get_visibility_of_element_located_by_xpath(self.price_of_product_2)
     def get_link_to_cart(self):
         return self.get_visibility_of_element_located_by_xpath(self.link_to_cart)
+    def get_cart_marker_text(self):
+        marker = self.get_visibility_of_element_located_by_xpath(self.cart_marker)
+        return marker.text
 
     #Actions
     def click_button_add_to_cart_product_1(self):
@@ -42,12 +46,18 @@ class Catalog_page(Base):
 
     #Methods
     def add_to_cart_two_products_and_return_sum_price(self):
-        with allure.step("Add to cart two products"):
-            Logger.add_start_step(method="Add to cart two products")
+        with allure.step("Add to cart two products and return sum price"):
+            Logger.add_start_step(method="Add to cart two products and return sum price")
             product_price_sum = self.return_float_price_of_product_1() + self.return_float_price_of_product_2()
             self.click_button_add_to_cart_product_1()
             self.click_button_add_to_cart_product_2()
             self.click_link_to_cart()
-            Logger.add_end_step(url=self.get_current_url(), method="Add to cart two products")
+            Logger.add_end_step(url=self.get_current_url(), method="Add to cart two products and return sum price")
             return product_price_sum
+    def follow_to_cart(self):
+        with allure.step("Follow to cart"):
+            Logger.add_start_step(method="Follow to cart")
+            self.click_link_to_cart()
+            self.assert_element_text('YOUR CART', self.get_cart_marker_text())
+            Logger.add_end_step(url=self.get_current_url(), method="Follow to cart")
 

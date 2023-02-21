@@ -4,6 +4,7 @@ import allure
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
+from pages.Cart_page import Cart_page
 from pages.Catalog_page import Catalog_page
 from pages.Login_page import Login_page
 
@@ -21,6 +22,12 @@ def test_action(set_up):
 
     catalog_page = Catalog_page(driver)
     product_price_sum = catalog_page.add_to_cart_two_products_and_return_sum_price()
+
+    cart_page = Cart_page(driver)
+    product_price_sum_in_cart = cart_page.get_sum_product()
+    cart_page.action_checkout()
+
+    assert product_price_sum == product_price_sum_in_cart
 
     time.sleep(2)
     driver.close()
