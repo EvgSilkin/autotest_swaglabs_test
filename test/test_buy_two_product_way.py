@@ -24,7 +24,6 @@ def test_buy_two_product_way(driver):
 
     login_page = Login_page(driver)
     login_page.authorization(username, password)
-    login_page.screen_page(path_to_screenshot)
 
     catalog_page = Catalog_page(driver)
     product_price_sum = catalog_page.add_to_cart_two_products_and_return_sum_price()
