@@ -20,7 +20,7 @@
 _File - Settings - Project: name - Python Interpreter - Add interpreter_
 - Перейти в виртуальное окружение с помощью ввода в терминале команды: `venv/Scripts/activate`
 - Установить пакеты и зависимости с помощью ввода в терминал команды: `pip install -r requirements.txt`
-- Запустить все тесты с помощью ввода в терминал команды: `python -m pytest --alluredir=test_results/ test/`
+- Запустить тест с помощью ввода в терминал команды: `python -m pytest --alluredir=test_results/ test/`
 - Отобразить allure-отчет, после выполнения проверок с помощью ввода в терминал команды: `allure serve test_results/`
 
 
